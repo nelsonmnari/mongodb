@@ -72,3 +72,41 @@ db.students.aggregate([
 db.students.aggregate([
     { $group: { _id: "$track", avg_age: { $avg: "$age" } } }
 ])
+
+
+// new database.
+use salesDB;
+
+db.orders.insertMany([
+  { userId: 1, item: "Laptop", price: 1200, quantity: 1, category: "Electronics" },
+  { userId: 2, item: "Keyboard", price: 100, quantity: 2, category: "Accessories" },
+  { userId: 1, item: "Mouse", price: 25, quantity: 3, category: "Accessories" },
+  { userId: 3, item: "Monitor", price: 300, quantity: 1, category: "Electronics" }
+]);
+
+//Aggreagtion: Retrieving orders where the price is greater than or equal to 50.
+db.orders.aggregate([
+  { $match: { price: { $gte: 50 } } }
+]);
+
+// Aggregation : Order by user and calculating total spend.
+db.orders.aggregate([
+  { $group: { _id: "$userId", totalSpent: { $sum: "$price" } } }
+]);
+
+// Aggregation: Sorting result by total spend in descending order.
+db.orders.aggregate([
+  { $group: { _id: "$userId", totalSpent: { $sum: "$price" } } },
+  { $sort: { totalSpent: -1 } }
+]);
+
+// Aggregation: Calculating total quantity of items sold per category.
+db.orders.aggregate([
+  { $group: { _id: "$category", totalQuantity: { $sum: "$quantity" } } }
+]);
+
+//Aggregation: Filtering electronics items and  calculating the total revenue.
+db.orders.aggregate([
+  { $match: { category: "Electronics" } },
+  { $group: { _id: "$category", totalRevenue: { $sum: { $multiply: [ "$price", "$quantity" ] } } } }
+]);
