@@ -1,8 +1,8 @@
 # MongoDB CRUD with MongoDB Compass
 
-This guide shows how to perform basic **CRUD operations** using **MongoDB Compass**
+This shows how to perform basic **CRUD operations** using **MongoDB Compass**
 
-## 📥 1. CREATE
+## 1. CREATE
 
 1. Open MongoDB Compass and connect to your database.
 2. Navigate to your desired **database** > **collection**.
@@ -10,13 +10,13 @@ This guide shows how to perform basic **CRUD operations** using **MongoDB Compas
 4. Add your data in JSON format, e.g.:
 ```json
 {
-  "name": "John Doe",
+ "name": "John",
   "email": "john@example.com",
   "age": 30
 }
 Click "Insert" to save.
 
-🔍 2. READ
+ 2. READ
 In your collection, you’ll see a list of documents.
 
 Use the filter bar to query, e.g.:
@@ -25,7 +25,7 @@ Use the filter bar to query, e.g.:
 { "age": { "$gt": 25 } }
 Click any document to view details.
 
-✏️ 3. UPDATE
+ 3. UPDATE
 Click the pen icon next to a document.
 
 Edit fields directly or add new ones.
@@ -38,7 +38,7 @@ json
 Filter: { "name": "John Doe" }
 Update: { "$set": { "age": 31 } }
 
-✅ Done!
+Done!
 You've now seen how to:
 
 Create documents
